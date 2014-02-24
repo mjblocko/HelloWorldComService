@@ -1,0 +1,33 @@
+import "oaidl.idl";
+import "ocidl.idl";
+
+// Library statement
+[
+  uuid(4344B670-A390-427E-A56C-9DA9128D2D77),
+  version(2.0),
+  helpstring("HelloWorldComService 2.0 Type Library")
+]
+library HelloWorldComService
+{
+  importlib("stdole2.tlb");
+
+// Define ISimpleObject interface
+[
+    object,
+    uuid(40E88A85-1CAF-4B5F-9496-686CDA31A774),
+    dual,
+    helpstring("ISimpleObject Interface"),
+    pointer_default(unique)
+]
+interface ISimpleObject : IDispatch
+{
+	  HRESULT HelloWorld([out,retval] BSTR* pRet);
+	  HRESULT GetProcessThreadID([out] long* pdwProcessId, [out] long* pdwThreadId);
+};
+
+  [uuid(1D054628-D8A9-4216-B7B6-C698BAAF1EE1)]
+  coclass SimpleObject
+  {
+    [default] interface ISimpleObject; 
+  };
+};
